@@ -5,9 +5,8 @@ import android.os.Bundle
 import android.text.InputType
 import kotlinx.android.synthetic.main.activity_main.*
 
-
-class MainActivity : Activity() {
-
+class HelpActivity : Activity() {
+/*
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -16,8 +15,6 @@ class MainActivity : Activity() {
         //CodingArea.setSelection(1)
         CodingArea.setRawInputType(InputType.TYPE_CLASS_TEXT)
         CodingArea.setTextIsSelectable(true)
-
-        ButtonHelp.setOnClickListener { setContentView(R.layout.activity_help) }
-        ButtonHome.setOnClickListener { setContentView(R.layout.activity_main) }
     }
+    */
 }
