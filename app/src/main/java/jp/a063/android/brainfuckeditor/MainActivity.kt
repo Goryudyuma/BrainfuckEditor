@@ -1,6 +1,7 @@
 package jp.a063.android.brainfuckeditor
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +18,19 @@ class MainActivity : Activity() {
         CodingArea.setRawInputType(InputType.TYPE_CLASS_TEXT)
         CodingArea.setTextIsSelectable(true)
 
-        ButtonHelp.setOnClickListener { setContentView(R.layout.activity_help) }
-        ButtonHome.setOnClickListener { setContentView(R.layout.activity_main) }
+        ButtonHelp.setOnClickListener {
+
+            intent= Intent()
+            intent.setClassName("jp.a063.android.brainfuckeditor","jp.a063.android.brainfuckeditor.HelpActivity")
+            startActivity(intent)
+
+        }
+        ButtonHome.setOnClickListener {
+            /*
+            intent= Intent()
+            intent.setClassName("jp.a063.android.brainfuckeditor","jp.a063.android.brainfuckeditor.HomeActivity")
+            startActivity(intent)
+            */
+        }
     }
 }
