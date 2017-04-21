@@ -59,4 +59,22 @@ class BFServiceTest {
         assertEquals(nextnext.QueryIndex, 2)
         assertEquals(nextnext.Memory, arrayListOf<Int>(254))
     }
+
+    @Test
+    fun right() {
+        val now = BFStatus(QueryString = ">")
+        val next = BFService().nextStatus(now)
+        assertEquals(next.QueryIndex, 1)
+        assertEquals(next.Memory, arrayListOf<Int>(0, 0))
+        assertEquals(next.MemoryIndex, 1)
+    }
+
+    @Test
+    fun leftt() {
+        val now = BFStatus(QueryString = "<")
+        val next = BFService().nextStatus(now)
+        assertEquals(next.QueryIndex, 1)
+        assertEquals(next.Memory, arrayListOf<Int>(0, 0))
+        assertEquals(next.MemoryIndex, 0)
+    }
 }
