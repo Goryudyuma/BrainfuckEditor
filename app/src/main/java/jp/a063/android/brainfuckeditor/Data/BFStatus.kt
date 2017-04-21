@@ -7,6 +7,6 @@ package jp.a063.android.brainfuckeditor.Data
 data class BFStatus(
         val QueryString: String = "",
         val QueryIndex: Int = 0,
-        val Memory: ArrayList<Int>,
+        val Memory: ArrayList<Int> = arrayListOf<Int>(0),
         val MemoryIndex: Int = 0
 )

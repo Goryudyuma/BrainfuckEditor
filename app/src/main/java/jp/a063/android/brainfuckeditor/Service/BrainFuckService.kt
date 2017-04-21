@@ -21,37 +21,37 @@ class BFService : IntentService("BrainFuckService") {
         }
         val nowJobQueue: Char = nowStatus.QueryString.get(nowStatus.QueryIndex)
         if (nowJobQueue == '+') {
-            var retMemory = nowStatus.Memory
-            retMemory[nowStatus.QueryIndex]++
-            if (retMemory[nowStatus.QueryIndex] == 256) {
-                retMemory[nowStatus.QueryIndex] = 0
+            val retMemory = ArrayList<Int>(nowStatus.Memory)
+            retMemory[nowStatus.MemoryIndex]++
+            if (retMemory[nowStatus.MemoryIndex] == 256) {
+                retMemory[nowStatus.MemoryIndex] = 0
             }
-            return nowStatus.copy(Memory = retMemory)
+            return nowStatus.copy(Memory = retMemory, QueryIndex = nowStatus.QueryIndex + 1)
         } else if (nowJobQueue == '-') {
-            var retMemory = nowStatus.Memory
-            retMemory[nowStatus.QueryIndex]--
-            if (retMemory[nowStatus.QueryIndex] == -1) {
-                retMemory[nowStatus.QueryIndex] = 255
+            val retMemory = ArrayList<Int>(nowStatus.Memory)
+            retMemory[nowStatus.MemoryIndex]--
+            if (retMemory[nowStatus.MemoryIndex] == -1) {
+                retMemory[nowStatus.MemoryIndex] = 255
             }
-            return nowStatus.copy(Memory = retMemory)
+            return nowStatus.copy(Memory = retMemory, QueryIndex = nowStatus.QueryIndex + 1)
         } else if (nowJobQueue == '>') {
-            var retMemory = nowStatus.Memory
+            val retMemory = ArrayList<Int>(nowStatus.Memory)
             var nowMemoryIndex = nowStatus.MemoryIndex
             nowMemoryIndex++
             if (retMemory.size <= nowMemoryIndex) {
                 retMemory.add(0);
             }
-            return nowStatus.copy(Memory = retMemory, MemoryIndex = nowMemoryIndex)
+            return nowStatus.copy(Memory = retMemory, MemoryIndex = nowMemoryIndex, QueryIndex = nowStatus.QueryIndex + 1)
         } else if (nowJobQueue == '<') {
-            var retMemory = nowStatus.Memory
+            val retMemory = ArrayList<Int>(nowStatus.Memory)
             var nowMemoryIndex = nowStatus.MemoryIndex
             nowMemoryIndex--
             if (nowMemoryIndex == -1) {
                 retMemory.add(0, 0);
                 nowMemoryIndex = 0
             }
-            return nowStatus.copy(Memory = retMemory, MemoryIndex = nowMemoryIndex)
+            return nowStatus.copy(Memory = retMemory, MemoryIndex = nowMemoryIndex, QueryIndex = nowStatus.QueryIndex + 1)
         }
-        return nowStatus
+        return nowStatus.copy(QueryIndex = nowStatus.QueryIndex + 1)
     }
 }
